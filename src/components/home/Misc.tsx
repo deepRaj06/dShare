@@ -1,6 +1,7 @@
 import {View, Text, StyleSheet, Image} from 'react-native';
 import React from 'react';
 import CustomText from '../global/CustomText';
+import { commonStyles } from '../../styles/commonStyles';
 
 const Misc = () => {
   return (
@@ -12,6 +13,22 @@ const Misc = () => {
         source={require('../../assets/icons/adbanner.png')}
         style={styles.adBanner}
       />
+
+      {/* Below banner */}
+      <View style={commonStyles.flexRowBetween}>
+      <CustomText fontSize={22} fontFamily="Okra-Bold" style={styles.text}>
+        #1 World Best File Sharing App!
+      </CustomText>
+      <Image
+        source={require('../../assets/icons/share_logo.jpg')}
+        style={styles.image}
+      />
+      
+    </View>
+
+    <CustomText fontFamily='Okra-Bold' style={styles.text2}>
+      Mafe with ❤️ - Deepak Rajput
+    </CustomText>
     </View>
   );
 };
