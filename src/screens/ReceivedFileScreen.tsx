@@ -1,4 +1,4 @@
-import {View, Text, Platform, SafeAreaView, ActivityIndicator, FlatList, TouchableOpacity} from 'react-native';
+import {View, Platform, SafeAreaView, ActivityIndicator, FlatList, TouchableOpacity} from 'react-native';
 import React, {FC, useEffect, useState} from 'react';
 import RNFS from 'react-native-fs';
 import Icon from '../components/global/Icon';
@@ -9,6 +9,7 @@ import { Colors } from '../utils/Constants';
 import { connectionStyles } from '../styles/connectionStyles';
 import { formatFileSize } from '../utils/libraryHelpers';
 import ReactNativeBlobUtil from 'react-native-blob-util';
+import { goBack } from '../utils/NavigationUtil';
 // Listing all files from downloads
 const ReceivedFileScreen: FC = () => {
   const [receivedFiles, setReceivedFiles] = useState<any[]>([]);
@@ -138,7 +139,7 @@ const ReceivedFileScreen: FC = () => {
         {
             isLoading ? (
                 <ActivityIndicator size='small' color={Colors.primary}/>
-            ) : (
+            ) : receivedFiles.length > 0 ? (
                 <View style={{flex:1}}>
                     <FlatList 
                         data={receivedFiles}
@@ -159,6 +160,15 @@ const ReceivedFileScreen: FC = () => {
                 </View>
             )
         }
+
+        <TouchableOpacity onPress={goBack} style={sendStyles.backButton}>
+          <Icon 
+            name="arrow-back"
+            iconFamily="Ionicons"
+            size={16}
+            color="#000"
+          />
+        </TouchableOpacity>
       </View>
     </LinearGradient>
   );
